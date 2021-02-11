@@ -27,6 +27,8 @@ class AddViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
             let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
             let photo = UIAlertAction(title: "Photo", style: .default) { _ in
