@@ -15,6 +15,7 @@
 		E092AF9E25D577B0007485CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E092AF9C25D577B0007485CB /* LaunchScreen.storyboard */; };
 		E092AFA825D57920007485CB /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFA725D57920007485CB /* Cell.swift */; };
 		E092AFAB25D57A98007485CB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFAA25D57A98007485CB /* MainViewController.swift */; };
+		E092AFB325D59C5B007485CB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFB225D59C5B007485CB /* AddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		E092AF9F25D577B0007485CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E092AFA725D57920007485CB /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		E092AFAA25D57A98007485CB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E092AFB225D59C5B007485CB /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				E092AF8E25D577AE007485CB /* AppDelegate.swift */,
 				E092AF9025D577AE007485CB /* SceneDelegate.swift */,
 				E092AFAA25D57A98007485CB /* MainViewController.swift */,
+				E092AFB225D59C5B007485CB /* AddViewController.swift */,
 				E092AFA725D57920007485CB /* Cell.swift */,
 				E092AF9425D577AE007485CB /* Main.storyboard */,
 				E092AF9A25D577B0007485CB /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 			files = (
 				E092AF8F25D577AE007485CB /* AppDelegate.swift in Sources */,
 				E092AFA825D57920007485CB /* Cell.swift in Sources */,
+				E092AFB325D59C5B007485CB /* AddViewController.swift in Sources */,
 				E092AF9125D577AE007485CB /* SceneDelegate.swift in Sources */,
 				E092AF9925D577AE007485CB /* ToDoList.xcdatamodeld in Sources */,
 				E092AFAB25D57A98007485CB /* MainViewController.swift in Sources */,
