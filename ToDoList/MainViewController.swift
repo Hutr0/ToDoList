@@ -10,7 +10,7 @@ import CoreData
 
 class MainViewController: UITableViewController {
     
-    var context: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var context: NSManagedObjectContext!
     
     var tasks: [Task] = []
 
@@ -43,6 +43,11 @@ class MainViewController: UITableViewController {
         
         cell.nameLabel.text = task.title
         cell.descriptionLabel.text = task.desc
+        if let pictureOfTask = task.picture {
+            cell.picture.image = UIImage(data: pictureOfTask)
+        } else {
+            cell.picture.image = #imageLiteral(resourceName: "nothing")
+        }
         
         return cell
     }
@@ -56,7 +61,9 @@ class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let task = tasks[indexPath.row]
+            
             StorageManager.deleteObject(context: context, object: task)
+            
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -69,6 +76,7 @@ class MainViewController: UITableViewController {
     
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         guard let source = segue.source as? AddViewController else { return }
+        
         source.saveTask(context)
         
         tasks.append(source.task!)
