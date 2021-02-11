@@ -25,10 +25,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="IhE-Eh-Gfc">
-                                            <rect key="frame" x="8" y="8.0000000000000036" width="374" height="60.333333333333343"/>
+                                            <rect key="frame" x="8" y="8" width="374" height="64.333333333333329"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nothing" translatesAutoresizingMaskIntoConstraints="NO" id="wCq-Cq-aYG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60.333333333333336"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="64.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="wCq-Cq-aYG" secondAttribute="height" multiplier="1:1" id="0FO-Le-ZhZ"/>
                                                         <constraint firstAttribute="width" constant="60" id="4HB-Nx-I2r"/>
@@ -36,16 +36,16 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Jc6-fu-dee">
-                                                    <rect key="frame" x="76" y="0.0" width="298" height="60.333333333333336"/>
+                                                    <rect key="frame" x="76" y="0.0" width="298" height="64.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txQ-bV-aMU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="298" height="33.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="298" height="35.666666666666664"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vn-YH-qBI">
-                                                            <rect key="frame" x="0.0" y="33.333333333333336" width="298" height="27"/>
+                                                            <rect key="frame" x="0.0" y="35.666666666666664" width="298" height="28.666666666666664"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -66,6 +66,7 @@
                                     <outlet property="descriptionLabel" destination="6vn-YH-qBI" id="Ujq-W5-fMT"/>
                                     <outlet property="nameLabel" destination="txQ-bV-aMU" id="laF-VQ-6JH"/>
                                     <outlet property="picture" destination="wCq-Cq-aYG" id="HDC-2u-NCD"/>
+                                    <segue destination="0Dh-Y5-bI2" kind="show" identifier="editTask" id="8Vu-qI-XWa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -74,7 +75,7 @@
                             <outlet property="delegate" destination="5P7-cr-RDE" id="VH7-lr-WK0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Tasks" id="0Zd-eq-P3L">
+                    <navigationItem key="navigationItem" title="Tasks" largeTitleDisplayMode="never" id="0Zd-eq-P3L">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7AM-YC-YvR">
                             <connections>
                                 <segue destination="hgq-BV-VGG" kind="presentation" identifier="" modalPresentationStyle="fullScreen" id="HKC-QH-ewz"/>
@@ -190,14 +191,14 @@
                             <outlet property="delegate" destination="0Dh-Y5-bI2" id="Hmn-l1-fDw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New task" id="plc-ry-bQI">
+                    <navigationItem key="navigationItem" title="New task" largeTitleDisplayMode="always" id="plc-ry-bQI">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="h9x-wD-56U">
                             <color key="tintColor" systemColor="systemPinkColor"/>
                             <connections>
                                 <action selector="cancelAction:" destination="0Dh-Y5-bI2" id="8Bc-M5-ow1"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="t4G-19-nYB">
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="t4G-19-nYB">
                             <connections>
                                 <segue destination="wIk-Hv-x2j" kind="unwind" unwindAction="unwindSegue:" id="2Fd-KX-c97"/>
                             </connections>
@@ -213,18 +214,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7aX-0O-zyT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="wIk-Hv-x2j" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2873.8461538461538" y="127.96208530805687"/>
+            <point key="canvasLocation" x="1834" y="128"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PZ0-4m-mJh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jgj-Q1-Sf4" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Ch-ON-Xsl">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="5Ch-ON-Xsl">
+                        <rect key="frame" x="0.0" y="44" width="390" height="111.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="35"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="40"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -255,9 +259,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uzu-Jm-nhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1944.6153846153845" y="127.96208530805687"/>
+            <point key="canvasLocation" x="1834" y="-583"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8Vu-qI-XWa"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="nothing" width="256" height="256"/>
         <systemColor name="labelColor">

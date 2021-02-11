@@ -15,6 +15,7 @@ class AddViewController: UITableViewController {
     @IBOutlet weak var titleOfTask: UITextField!
     @IBOutlet weak var descriptionOfTask: UITextView!
     
+    var currentContext: NSManagedObjectContext!
     var task: Task?
     
     override func viewDidLoad() {
@@ -23,7 +24,14 @@ class AddViewController: UITableViewController {
         
         doneButton.isEnabled = false
         titleOfTask.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        
+        if task != nil {
+            setupNavigationBar()
+            loadTask()
+        }
     }
+    
+    // MARK: Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
@@ -49,18 +57,52 @@ class AddViewController: UITableViewController {
         }
     }
     
-    func saveTask(_ context: NSManagedObjectContext) {
-        guard let entity = NSEntityDescription.entity(forEntityName: "Task", in: context) else { return }
-        let taskObject = Task(entity: entity, insertInto: context)
-        
-        taskObject.title = titleOfTask.text
-        taskObject.desc = descriptionOfTask.text
-        taskObject.picture = pictureOfTask.image?.pngData()
-        
-        StorageManager.saveObject(context)
-        
-        task = taskObject
+    // MARK: Work with task
+    
+    func saveTask() {
+        if task != nil {
+            guard let task = task else { return }
+            
+            task.title = titleOfTask.text
+            task.desc = descriptionOfTask.text
+            task.picture = pictureOfTask.image?.pngData()
+            
+            StorageManager.saveObject(currentContext)
+            
+            self.task = nil
+        } else {
+            guard let entity = NSEntityDescription.entity(forEntityName: "Task", in: currentContext) else { return }
+            let taskObject = Task(entity: entity, insertInto: currentContext)
+            
+            taskObject.title = titleOfTask.text
+            taskObject.desc = descriptionOfTask.text
+            taskObject.picture = pictureOfTask.image?.pngData()
+            
+            StorageManager.saveObject(currentContext)
+            
+            task = taskObject
+        }
     }
+    
+    private func loadTask() {
+        guard let task = task else { return }
+        
+        titleOfTask.text = task.title
+        descriptionOfTask.text = task.desc
+        pictureOfTask.image = UIImage(data: task.picture!)
+    }
+    
+    private func setupNavigationBar() {
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.rightBarButtonItem?.title = "Save"
+        title = task!.title
+        doneButton.isEnabled = true
+    }
+    
+    // MARK: Actions
     
     @IBAction private func cancelAction(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)

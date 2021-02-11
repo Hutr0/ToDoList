@@ -72,14 +72,29 @@ class MainViewController: UITableViewController {
     // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editTask" {
+            let vc = segue.destination as! AddViewController
+            
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let task = tasks[indexPath.row]
+            
+            vc.currentContext = task.managedObjectContext
+            vc.task = task
+        }
     }
     
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         guard let source = segue.source as? AddViewController else { return }
         
-        source.saveTask(context)
+        source.currentContext = context
+        source.saveTask()
         
-        tasks.append(source.task!)
+        guard let task = source.task else {
+            tableView.reloadData()
+            return
+        }
+        
+        tasks.append(task)
         tableView.reloadData()
     }
 }
