@@ -17,6 +17,7 @@ class AddViewController: UITableViewController {
     
     var currentContext: NSManagedObjectContext!
     var task: Task?
+    var pictureIsChanged: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,27 +62,31 @@ class AddViewController: UITableViewController {
     
     func saveTask() {
         if task != nil {
-            guard let task = task else { return }
+            guard let taskObject = task else { return }
             
-            task.title = titleOfTask.text
-            task.desc = descriptionOfTask.text
-            task.picture = pictureOfTask.image?.pngData()
+            save(taskObject)
             
-            StorageManager.saveObject(currentContext)
-            
-            self.task = nil
+            task = nil
         } else {
             guard let entity = NSEntityDescription.entity(forEntityName: "Task", in: currentContext) else { return }
             let taskObject = Task(entity: entity, insertInto: currentContext)
             
-            taskObject.title = titleOfTask.text
-            taskObject.desc = descriptionOfTask.text
-            taskObject.picture = pictureOfTask.image?.pngData()
-            
-            StorageManager.saveObject(currentContext)
+            save(taskObject)
             
             task = taskObject
         }
+    }
+    
+    private func save(_ taskObject: Task) {
+        taskObject.title = titleOfTask.text
+        taskObject.desc = descriptionOfTask.text
+        if pictureIsChanged {
+            taskObject.picture = pictureOfTask.image?.pngData()
+        } else {
+            task?.picture = nil
+        }
+        
+        StorageManager.saveObject(currentContext)
     }
     
     private func loadTask() {
@@ -89,7 +94,13 @@ class AddViewController: UITableViewController {
         
         titleOfTask.text = task.title
         descriptionOfTask.text = task.desc
-        pictureOfTask.image = UIImage(data: task.picture!)
+        guard let imageData = task.picture, let image = UIImage(data: imageData) else {
+            pictureOfTask.image = UIImage(named: "addNonPicture")
+            return
+        }
+        pictureOfTask.image = image
+        pictureOfTask.contentMode = .scaleAspectFill
+        pictureIsChanged = true
     }
     
     private func setupNavigationBar() {
@@ -144,6 +155,7 @@ extension AddViewController: UIImagePickerControllerDelegate {
         pictureOfTask.contentMode = .scaleAspectFill
         pictureOfTask.clipsToBounds = true
         
+        pictureIsChanged = true
         dismiss(animated: true, completion: nil)
     }
 }

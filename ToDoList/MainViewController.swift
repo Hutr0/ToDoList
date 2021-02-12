@@ -78,6 +78,8 @@ class MainViewController: UITableViewController {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             let task = tasks[indexPath.row]
             
+            // taskObject.picture = UIImage(named: "nothing")?.pngData()
+            
             vc.currentContext = task.managedObjectContext
             vc.task = task
         }
