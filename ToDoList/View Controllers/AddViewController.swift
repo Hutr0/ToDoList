@@ -10,14 +10,16 @@ import CoreData
 
 class AddViewController: UITableViewController {
 
+    var currentContext: NSManagedObjectContext!
+    var task: Task?
+    var pictureIsChanged: Bool = false
+    
     @IBOutlet private weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var pictureOfTask: UIImageView!
     @IBOutlet weak var titleOfTask: UITextField!
     @IBOutlet weak var descriptionOfTask: UITextView!
-    
-    var currentContext: NSManagedObjectContext!
-    var task: Task?
-    var pictureIsChanged: Bool = false
+    @IBOutlet weak var locationOfTask: UITextField!
+    @IBOutlet weak var deadlineTask: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()

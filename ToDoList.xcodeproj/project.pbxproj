@@ -17,6 +17,8 @@
 		E092AFAB25D57A98007485CB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFAA25D57A98007485CB /* MainViewController.swift */; };
 		E092AFB325D59C5B007485CB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFB225D59C5B007485CB /* AddViewController.swift */; };
 		E092AFB725D5B4F1007485CB /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFB625D5B4F1007485CB /* StorageManager.swift */; };
+		E0956EDF25D6C9A4004BD4B4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0956EDE25D6C9A4004BD4B4 /* MapViewController.swift */; };
+		E0956EE225D6CEAC004BD4B4 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0956EE125D6CEAC004BD4B4 /* MapManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		E092AFAA25D57A98007485CB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E092AFB225D59C5B007485CB /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		E092AFB625D5B4F1007485CB /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		E0956EDE25D6C9A4004BD4B4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E0956EE125D6CEAC004BD4B4 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,19 +68,61 @@
 		E092AF8D25D577AE007485CB /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				E092AF8E25D577AE007485CB /* AppDelegate.swift */,
-				E092AF9025D577AE007485CB /* SceneDelegate.swift */,
-				E092AFAA25D57A98007485CB /* MainViewController.swift */,
-				E092AFB225D59C5B007485CB /* AddViewController.swift */,
-				E092AFA725D57920007485CB /* Cell.swift */,
-				E092AFB625D5B4F1007485CB /* StorageManager.swift */,
-				E092AF9425D577AE007485CB /* Main.storyboard */,
-				E092AF9A25D577B0007485CB /* Assets.xcassets */,
-				E092AF9C25D577B0007485CB /* LaunchScreen.storyboard */,
-				E092AF9F25D577B0007485CB /* Info.plist */,
-				E092AF9725D577AE007485CB /* ToDoList.xcdatamodeld */,
+				E0956ED525D6C706004BD4B4 /* View Controllers */,
+				E0956ED925D6C779004BD4B4 /* Healpers */,
+				E0956ED825D6C740004BD4B4 /* Storyboard */,
+				E0956ED725D6C722004BD4B4 /* Support files */,
+				E0956EDB25D6C797004BD4B4 /* Data */,
 			);
 			path = ToDoList;
+			sourceTree = "<group>";
+		};
+		E0956ED525D6C706004BD4B4 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E092AFAA25D57A98007485CB /* MainViewController.swift */,
+				E092AFB225D59C5B007485CB /* AddViewController.swift */,
+				E0956EDE25D6C9A4004BD4B4 /* MapViewController.swift */,
+				E092AFA725D57920007485CB /* Cell.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E0956ED725D6C722004BD4B4 /* Support files */ = {
+			isa = PBXGroup;
+			children = (
+				E092AF8E25D577AE007485CB /* AppDelegate.swift */,
+				E092AF9025D577AE007485CB /* SceneDelegate.swift */,
+				E092AF9A25D577B0007485CB /* Assets.xcassets */,
+				E092AF9F25D577B0007485CB /* Info.plist */,
+			);
+			path = "Support files";
+			sourceTree = "<group>";
+		};
+		E0956ED825D6C740004BD4B4 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				E092AF9425D577AE007485CB /* Main.storyboard */,
+				E092AF9C25D577B0007485CB /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		E0956ED925D6C779004BD4B4 /* Healpers */ = {
+			isa = PBXGroup;
+			children = (
+				E092AFB625D5B4F1007485CB /* StorageManager.swift */,
+				E0956EE125D6CEAC004BD4B4 /* MapManager.swift */,
+			);
+			path = Healpers;
+			sourceTree = "<group>";
+		};
+		E0956EDB25D6C797004BD4B4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E092AF9725D577AE007485CB /* ToDoList.xcdatamodeld */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,9 +199,11 @@
 				E092AFA825D57920007485CB /* Cell.swift in Sources */,
 				E092AFB325D59C5B007485CB /* AddViewController.swift in Sources */,
 				E092AFB725D5B4F1007485CB /* StorageManager.swift in Sources */,
+				E0956EE225D6CEAC004BD4B4 /* MapManager.swift in Sources */,
 				E092AF9125D577AE007485CB /* SceneDelegate.swift in Sources */,
 				E092AF9925D577AE007485CB /* ToDoList.xcdatamodeld in Sources */,
 				E092AFAB25D57A98007485CB /* MainViewController.swift in Sources */,
+				E0956EDF25D6C9A4004BD4B4 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +352,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VWW7MQ2767;
-				INFOPLIST_FILE = ToDoList/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ToDoList/Support files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,7 +371,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VWW7MQ2767;
-				INFOPLIST_FILE = ToDoList/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ToDoList/Support files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

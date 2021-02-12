@@ -63,6 +63,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) photo use</string>
+	<string>For take photo to your task</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>For set place to your task</string>
 </dict>
 </plist>
