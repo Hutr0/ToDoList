@@ -23,7 +23,7 @@ class AddViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
         doneButton.isEnabled = false
         titleOfTask.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
@@ -115,6 +115,14 @@ class AddViewController: UITableViewController {
         doneButton.isEnabled = true
     }
     
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let mapVC = segue.destination as? MapViewController else { return }
+        
+        mapVC.mapViewControllerDelegate = self
+    }
+    
     // MARK: Actions
     
     @IBAction private func cancelAction(_ sender: UIBarButtonItem) {
@@ -159,5 +167,13 @@ extension AddViewController: UIImagePickerControllerDelegate {
         
         pictureIsChanged = true
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: Custom Protocol MapViewControllerDelegate
+
+extension AddViewController: MapViewControllerDelegate {
+    func getAddress(_ address: String?) {
+        locationOfTask.text = address
     }
 }

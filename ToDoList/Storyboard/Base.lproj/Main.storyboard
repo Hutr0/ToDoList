@@ -132,7 +132,7 @@
                                                             <color key="textColor" red="0.56675081149999995" green="0.56864857329999996" blue="0.57434185869999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VSX-Q0-czL">
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VSX-Q0-czL">
                                                             <rect key="frame" x="0.0" y="33" width="362" height="35"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="20"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -168,7 +168,7 @@
                                                             <rect key="frame" x="0.0" y="32" width="362" height="140"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <color key="textColor" systemColor="labelColor"/>
-                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="20"/>
+                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
                                                     </subviews>
@@ -201,7 +201,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="teQ-SY-H27">
                                                             <rect key="frame" x="0.0" y="24" width="354" height="44"/>
                                                             <subviews>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MnG-XN-1r2">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="MnG-XN-1r2">
                                                                     <rect key="frame" x="0.0" y="0.0" width="310" height="44"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="20"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -209,11 +209,12 @@
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hB4-9u-auc">
                                                                     <rect key="frame" x="310" y="0.0" width="44" height="44"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="hB4-9u-auc" secondAttribute="height" multiplier="1:1" id="moS-18-dhy"/>
+                                                                        <constraint firstAttribute="height" constant="44" id="GdC-xQ-yEZ"/>
+                                                                        <constraint firstAttribute="width" constant="44" id="pnG-Qf-lLV"/>
                                                                     </constraints>
                                                                     <state key="normal" image="Placeholder"/>
                                                                     <connections>
-                                                                        <segue destination="exK-lf-64N" kind="presentation" identifier="showMap" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="rXP-9k-0S9"/>
+                                                                        <segue destination="exK-lf-64N" kind="presentation" identifier="" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="rXP-9k-0S9"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -353,6 +354,9 @@
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="doneButtonAction:" destination="exK-lf-64N" eventType="touchUpInside" id="8fE-Fe-ar2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bWL-oM-tmR"/>

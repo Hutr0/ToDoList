@@ -8,9 +8,14 @@
 import UIKit
 import MapKit
 
+protocol MapViewControllerDelegate {
+    func getAddress(_ address: String?)
+}
+
 class MapViewController: UIViewController {
     
     let mapManager = MapManager()
+    var mapViewControllerDelegate: MapViewControllerDelegate?
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pinImage: UIImageView!
@@ -32,6 +37,11 @@ class MapViewController: UIViewController {
     
     @IBAction func centeringUserPosition(_ sender: UIButton) {
         mapManager.showUserLocation(mapView: mapView)
+    }
+    
+    @IBAction func doneButtonAction(_ sender: UIButton) {
+        mapViewControllerDelegate?.getAddress(addressLabel.text)
+        dismiss(animated: true)
     }
     
     @IBAction func cancelAction(_ sender: UIButton) {
