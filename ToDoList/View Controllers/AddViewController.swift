@@ -19,7 +19,7 @@ class AddViewController: UITableViewController {
     @IBOutlet weak var titleOfTask: UITextField!
     @IBOutlet weak var descriptionOfTask: UITextView!
     @IBOutlet weak var locationOfTask: UITextField!
-    @IBOutlet weak var deadlineTask: UIDatePicker!
+    @IBOutlet weak var deadlineOfTask: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +82,8 @@ class AddViewController: UITableViewController {
     private func save(_ taskObject: Task) {
         taskObject.title = titleOfTask.text
         taskObject.desc = descriptionOfTask.text
+        taskObject.location = locationOfTask.text
+        taskObject.deadline = deadlineOfTask.date
         if pictureIsChanged {
             taskObject.picture = pictureOfTask.image?.pngData()
         } else {
@@ -96,6 +98,8 @@ class AddViewController: UITableViewController {
         
         titleOfTask.text = task.title
         descriptionOfTask.text = task.desc
+        locationOfTask.text = task.location
+        deadlineOfTask.date = task.deadline ?? Date()
         guard let imageData = task.picture, let image = UIImage(data: imageData) else {
             pictureOfTask.image = UIImage(named: "addNonPicture")
             return
