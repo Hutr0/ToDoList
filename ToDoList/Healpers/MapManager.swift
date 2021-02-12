@@ -12,11 +12,10 @@ class MapManager {
     
     let locationManager = CLLocationManager()
     
-    let regionInMeters = 1000.0
+    let regionInMeters = 500.0
     
     func checkLocationServices(mapView: MKMapView, closure: () -> ()) {
         if CLLocationManager.locationServicesEnabled() {
-            mapView.showsUserLocation = true
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             checkLocationAutorization(mapView: mapView)
             closure()
@@ -38,11 +37,12 @@ class MapManager {
         case .denied:
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                 self.showAlert(title: "Location Services are denied",
-                          message: "To enable your location tracking: Setting -> ToDoList -> Location")
+                               message: "To enable your location tracking: Setting -> ToDoList -> Location")
             }
         case .authorizedAlways:
             break
         case .authorizedWhenInUse:
+            mapView.showsUserLocation = true
             showUserLocation(mapView: mapView)
             break
         @unknown default:
@@ -57,6 +57,13 @@ class MapManager {
             
             mapView.setRegion(region, animated: true)
         }
+    }
+    
+    func getCenterLocation(mapView: MKMapView) -> CLLocation {
+        let latitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
+        
+        return CLLocation(latitude: latitude, longitude: longitude)
     }
     
     private func showAlert(title: String, message: String) {
