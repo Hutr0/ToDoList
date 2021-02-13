@@ -43,7 +43,6 @@ class MapManager {
             break
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
-            showUserLocation(mapView: mapView)
             break
         @unknown default:
             print("New cases was added")
@@ -52,9 +51,29 @@ class MapManager {
     
     func showUserLocation(mapView: MKMapView) {
         if let location = locationManager.location?.coordinate {
-            
             let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    func showSpecificLocation(mapView: MKMapView, address: String) {
+        let geocoder = CLGeocoder()
+        
+        geocoder.geocodeAddressString(address) { (placemarks, error) in
             
+            if let error = error {
+                print(error)
+            }
+            
+            guard let placemarks = placemarks else { return }
+            
+            let placemark = placemarks.first
+            
+            guard let latitude = placemark?.location?.coordinate.latitude,
+                  let longitude = placemark?.location?.coordinate.longitude else { return }
+            
+            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: self.regionInMeters, longitudinalMeters: self.regionInMeters)
             mapView.setRegion(region, animated: true)
         }
     }

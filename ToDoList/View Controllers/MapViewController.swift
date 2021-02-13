@@ -16,6 +16,7 @@ class MapViewController: UIViewController {
     
     let mapManager = MapManager()
     var mapViewControllerDelegate: MapViewControllerDelegate?
+    var location: String?
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pinImage: UIImageView!
@@ -25,13 +26,19 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.delegate = self
-        
-        addressLabel.text = ""
         doneButton.layer.cornerRadius = doneButton.layer.frame.height / 2
         
+        mapView.delegate = self
         mapManager.checkLocationServices(mapView: mapView) {
             mapManager.locationManager.delegate = self
+        }
+        
+        if location == nil {
+            mapManager.showUserLocation(mapView: mapView)
+            addressLabel.text = ""
+        } else {
+            mapManager.showSpecificLocation(mapView: mapView, address: location!)
+            addressLabel.text = location
         }
     }
     

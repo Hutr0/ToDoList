@@ -42,16 +42,17 @@ class AddViewController: UITableViewController {
             
             let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
-            let photo = UIAlertAction(title: "Photo", style: .default) { _ in
-                self.chooseImagePicker(source: .photoLibrary)
-            }
             let camera = UIAlertAction(title: "Camera", style: .default) { _ in
                 self.chooseImagePicker(source: .camera)
             }
+            let photo = UIAlertAction(title: "Photo", style: .default) { _ in
+                self.chooseImagePicker(source: .photoLibrary)
+            }
+            
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
-            ac.addAction(photo)
             ac.addAction(camera)
+            ac.addAction(photo)
             ac.addAction(cancel)
             
             present(ac, animated: true)
@@ -123,8 +124,11 @@ class AddViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let mapVC = segue.destination as? MapViewController else { return }
-        
         mapVC.mapViewControllerDelegate = self
+        
+        if locationOfTask.text != "" {
+            mapVC.location = locationOfTask.text
+        }
     }
     
     // MARK: Actions
@@ -154,12 +158,13 @@ extension AddViewController: UISearchTextFieldDelegate, UINavigationControllerDe
 // MARK: Work with image
 
 extension AddViewController: UIImagePickerControllerDelegate {
+    
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.allowsEditing = true
-            imagePicker.sourceType = source
+            imagePicker.sourceType = source            
             present(imagePicker, animated: true, completion: nil)
         }
     }
