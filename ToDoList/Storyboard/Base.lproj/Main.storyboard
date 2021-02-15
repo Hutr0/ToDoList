@@ -89,7 +89,7 @@
             <objects>
                 <tableViewController id="0Dh-Y5-bI2" customClass="AddViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BbS-ih-Iyy">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="843.99999999999989"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -192,7 +192,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5t-dg-kxt" customClass="MapView" customModule="ToDoList" customModuleProvider="target">
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5t-dg-kxt" customClass="MapView" customModule="ToDoList" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="40" width="362" height="252"/>
                                                 </mapView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR6-za-zEB">
