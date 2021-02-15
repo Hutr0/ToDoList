@@ -10,7 +10,7 @@ import MapKit
 import CoreData
 
 class AddViewController: UITableViewController {
-
+    
     var currentContext: NSManagedObjectContext!
     var task: Task?
     var pictureIsChanged: Bool = false
@@ -41,6 +41,9 @@ class AddViewController: UITableViewController {
         if task != nil {
             setupNavigationBar()
             loadTask()
+            if locationOfTask.text != nil && locationOfTask.text != "" {
+                updateLocation(mapView: mapOfTask, address: locationOfTask.text!, animated: false)
+            }
         }
     }
     
@@ -159,6 +162,13 @@ class AddViewController: UITableViewController {
 // MARK: Text field delegate
 
 extension AddViewController: UISearchTextFieldDelegate, UINavigationControllerDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == locationOfTask && locationOfTask.text != nil && locationOfTask.text != "" {
+            updateLocation(mapView: mapOfTask, address: locationOfTask.text!, animated: true)
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -173,11 +183,9 @@ extension AddViewController: UISearchTextFieldDelegate, UINavigationControllerDe
     }
     
     @objc func locationChanged() {
-//        if locationOfTask.text != "" {
-//            updateLocation(mapView: mapOfTask, address: locationOfTask.text!)
-//        } else {
-//            pinPicture.isHidden = true
-//        }
+        if locationOfTask.text != nil && locationOfTask.text == "" {
+            pinPicture.isHidden = true
+        }
     }
 }
 
@@ -208,7 +216,7 @@ extension AddViewController: UIImagePickerControllerDelegate {
 // MARK: Work with MapView
 
 extension AddViewController: MKMapViewDelegate {
-    func updateLocation(mapView: MKMapView, address: String) {
+    func updateLocation(mapView: MKMapView, address: String, animated: Bool) {
         let geocoder = CLGeocoder()
         let regionInMeters = 1000.0
         
@@ -226,7 +234,7 @@ extension AddViewController: MKMapViewDelegate {
             let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             
             self.pinPicture.isHidden = false
-            mapView.setRegion(region, animated: true)
+            mapView.setRegion(region, animated: animated)
         }
     }
 }
@@ -236,5 +244,8 @@ extension AddViewController: MKMapViewDelegate {
 extension AddViewController: MapViewControllerDelegate {
     func getAddress(_ address: String?) {
         locationOfTask.text = address
+        if address != nil && address != "" {
+            updateLocation(mapView: self.mapOfTask, address: address!, animated: false)
+        }
     }
 }
