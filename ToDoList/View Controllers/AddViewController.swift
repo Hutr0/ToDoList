@@ -6,31 +6,44 @@
 //
 
 import UIKit
+import MapKit
 import CoreData
 
 class AddViewController: UITableViewController {
-
+    
     var currentContext: NSManagedObjectContext!
     var task: Task?
     var pictureIsChanged: Bool = false
     
     @IBOutlet private weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var goMapButton: UIButton!
+    @IBOutlet weak var pinPicture: UIImageView!
     @IBOutlet weak var pictureOfTask: UIImageView!
     @IBOutlet weak var titleOfTask: UITextField!
     @IBOutlet weak var descriptionOfTask: UITextView!
     @IBOutlet weak var locationOfTask: UITextField!
     @IBOutlet weak var deadlineOfTask: UIDatePicker!
+    @IBOutlet weak var mapOfTask: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
+        mapOfTask.delegate = self
+        
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+        goMapButton.layer.cornerRadius = goMapButton.layer.frame.height / 8
         doneButton.isEnabled = false
+        pinPicture.isHidden = true
+        
         titleOfTask.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        locationOfTask.addTarget(self, action: #selector(locationChanged), for: .editingChanged)
         
         if task != nil {
             setupNavigationBar()
             loadTask()
+            if locationOfTask.text != nil && locationOfTask.text != "" {
+                updateLocation(mapView: mapOfTask, address: locationOfTask.text!, animated: false)
+            }
         }
     }
     
@@ -149,16 +162,29 @@ class AddViewController: UITableViewController {
 // MARK: Text field delegate
 
 extension AddViewController: UISearchTextFieldDelegate, UINavigationControllerDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == locationOfTask && locationOfTask.text != nil && locationOfTask.text != "" {
+            updateLocation(mapView: mapOfTask, address: locationOfTask.text!, animated: true)
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
     @objc func textFieldChanged() {
-        if titleOfTask != nil {
+        if titleOfTask.text != "" {
             doneButton.isEnabled = true
         } else {
             doneButton.isEnabled = false
+        }
+    }
+    
+    @objc func locationChanged() {
+        if locationOfTask.text != nil && locationOfTask.text == "" {
+            pinPicture.isHidden = true
         }
     }
 }
@@ -187,10 +213,39 @@ extension AddViewController: UIImagePickerControllerDelegate {
     }
 }
 
+// MARK: Work with MapView
+
+extension AddViewController: MKMapViewDelegate {
+    func updateLocation(mapView: MKMapView, address: String, animated: Bool) {
+        let geocoder = CLGeocoder()
+        let regionInMeters = 1000.0
+        
+        geocoder.geocodeAddressString(address) { (placemarks, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            guard let placemarks = placemarks else { return }
+            let placemark = placemarks.first
+            
+            guard let latitude = placemark?.location?.coordinate.latitude,
+                  let longitude = placemark?.location?.coordinate.longitude else { return }
+            
+            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            
+            self.pinPicture.isHidden = false
+            mapView.setRegion(region, animated: animated)
+        }
+    }
+}
+
 // MARK: Custom Protocol MapViewControllerDelegate
 
 extension AddViewController: MapViewControllerDelegate {
     func getAddress(_ address: String?) {
         locationOfTask.text = address
+        if address != nil && address != "" {
+            updateLocation(mapView: self.mapOfTask, address: address!, animated: false)
+        }
     }
 }
