@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E06CC94A25DD126B00C50903 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06CC94925DD126B00C50903 /* DetailViewModel.swift */; };
+		E06CC95425DD1E2000C50903 /* CurrentTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06CC95325DD1E2000C50903 /* CurrentTask.swift */; };
 		E092AF8F25D577AE007485CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AF8E25D577AE007485CB /* AppDelegate.swift */; };
 		E092AF9125D577AE007485CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AF9025D577AE007485CB /* SceneDelegate.swift */; };
 		E092AF9625D577AE007485CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E092AF9425D577AE007485CB /* Main.storyboard */; };
@@ -15,7 +17,7 @@
 		E092AF9E25D577B0007485CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E092AF9C25D577B0007485CB /* LaunchScreen.storyboard */; };
 		E092AFA825D57920007485CB /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFA725D57920007485CB /* Cell.swift */; };
 		E092AFAB25D57A98007485CB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFAA25D57A98007485CB /* MainViewController.swift */; };
-		E092AFB325D59C5B007485CB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFB225D59C5B007485CB /* AddViewController.swift */; };
+		E092AFB325D59C5B007485CB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFB225D59C5B007485CB /* DetailViewController.swift */; };
 		E092AFB725D5B4F1007485CB /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092AFB625D5B4F1007485CB /* StorageManager.swift */; };
 		E0956EDF25D6C9A4004BD4B4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0956EDE25D6C9A4004BD4B4 /* MapViewController.swift */; };
 		E0956EE225D6CEAC004BD4B4 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0956EE125D6CEAC004BD4B4 /* MapManager.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E06CC94925DD126B00C50903 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		E06CC95325DD1E2000C50903 /* CurrentTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTask.swift; sourceTree = "<group>"; };
 		E092AF8B25D577AE007485CB /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E092AF8E25D577AE007485CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E092AF9025D577AE007485CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,7 +37,7 @@
 		E092AF9F25D577B0007485CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E092AFA725D57920007485CB /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		E092AFAA25D57A98007485CB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		E092AFB225D59C5B007485CB /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		E092AFB225D59C5B007485CB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E092AFB625D5B4F1007485CB /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E0956EDE25D6C9A4004BD4B4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E0956EE125D6CEAC004BD4B4 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
@@ -55,7 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				E092AFAA25D57A98007485CB /* MainViewController.swift */,
-				E092AFB225D59C5B007485CB /* AddViewController.swift */,
+				E092AFB225D59C5B007485CB /* DetailViewController.swift */,
 				E0956EDE25D6C9A4004BD4B4 /* MapViewController.swift */,
 				E092AFA725D57920007485CB /* Cell.swift */,
 			);
@@ -66,17 +70,27 @@
 			isa = PBXGroup;
 			children = (
 				E0FFF1BD25DCA39E003979B5 /* MainViewModel.swift */,
+				E06CC94925DD126B00C50903 /* DetailViewModel.swift */,
+				E0956EE125D6CEAC004BD4B4 /* MapManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		E05C65B925DCA1DF00E985DF /* Manager */ = {
+		E05C65B925DCA1DF00E985DF /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				E0956EE125D6CEAC004BD4B4 /* MapManager.swift */,
 				E092AFB625D5B4F1007485CB /* StorageManager.swift */,
+				E092AF9725D577AE007485CB /* ToDoList.xcdatamodeld */,
 			);
-			path = Manager;
+			path = Data;
+			sourceTree = "<group>";
+		};
+		E06CC95225DD1E0600C50903 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E06CC95325DD1E2000C50903 /* CurrentTask.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E092AF8225D577AE007485CB = {
@@ -99,10 +113,10 @@
 			isa = PBXGroup;
 			children = (
 				E092AF9425D577AE007485CB /* Main.storyboard */,
-				E092AF9725D577AE007485CB /* ToDoList.xcdatamodeld */,
+				E06CC95225DD1E0600C50903 /* Model */,
 				E05C65B725DCA1CA00E985DF /* View */,
 				E05C65B825DCA1D500E985DF /* ViewModel */,
-				E05C65B925DCA1DF00E985DF /* Manager */,
+				E05C65B925DCA1DF00E985DF /* Data */,
 				E0956ED725D6C722004BD4B4 /* Support files */,
 			);
 			path = ToDoList;
@@ -192,13 +206,15 @@
 			files = (
 				E092AF8F25D577AE007485CB /* AppDelegate.swift in Sources */,
 				E092AFA825D57920007485CB /* Cell.swift in Sources */,
-				E092AFB325D59C5B007485CB /* AddViewController.swift in Sources */,
+				E092AFB325D59C5B007485CB /* DetailViewController.swift in Sources */,
 				E092AFB725D5B4F1007485CB /* StorageManager.swift in Sources */,
 				E0956EE225D6CEAC004BD4B4 /* MapManager.swift in Sources */,
 				E092AF9125D577AE007485CB /* SceneDelegate.swift in Sources */,
 				E092AF9925D577AE007485CB /* ToDoList.xcdatamodeld in Sources */,
 				E092AFAB25D57A98007485CB /* MainViewController.swift in Sources */,
 				E0956EDF25D6C9A4004BD4B4 /* MapViewController.swift in Sources */,
+				E06CC94A25DD126B00C50903 /* DetailViewModel.swift in Sources */,
+				E06CC95425DD1E2000C50903 /* CurrentTask.swift in Sources */,
 				E0FFF1BE25DCA39E003979B5 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

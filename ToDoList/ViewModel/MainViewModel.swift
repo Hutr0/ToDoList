@@ -51,20 +51,20 @@ class MainViewModel {
     }
     
     func prepareEditTask(for segue: UIStoryboardSegue, at indexPath: IndexPath) {
-        let vc = segue.destination as! AddViewController
+        let vc = segue.destination as! DetailViewController
         let task = tasks[indexPath.row]
         
-        vc.currentContext = task.managedObjectContext
-        vc.task = task
+        vc.detailViewModel.currentContext = task.managedObjectContext
+        vc.detailViewModel.task = task
     }
     
     func unwindSegue(_ segue: UIStoryboardSegue, closure: @escaping () -> ()) {
-        guard let source = segue.source as? AddViewController else { return }
+        guard let source = segue.source as? DetailViewController else { return }
         
-        source.currentContext = context
+        source.detailViewModel.currentContext = context
         source.saveTask()
         
-        guard let task = source.task else {
+        guard let task = source.detailViewModel.task else {
             closure()
             return
         }
