@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreData
 
-class ChangeViewController: UITableViewController {
+class AddViewController: UITableViewController {
     
     var currentContext: NSManagedObjectContext!
     var task: Task?
@@ -161,7 +161,7 @@ class ChangeViewController: UITableViewController {
 
 // MARK: Text field delegate
 
-extension ChangeViewController: UISearchTextFieldDelegate, UINavigationControllerDelegate {
+extension AddViewController: UISearchTextFieldDelegate, UINavigationControllerDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == locationOfTask && locationOfTask.text != nil && locationOfTask.text != "" {
@@ -191,7 +191,7 @@ extension ChangeViewController: UISearchTextFieldDelegate, UINavigationControlle
 
 // MARK: Work with image
 
-extension ChangeViewController: UIImagePickerControllerDelegate {
+extension AddViewController: UIImagePickerControllerDelegate {
     
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source) {
@@ -215,7 +215,7 @@ extension ChangeViewController: UIImagePickerControllerDelegate {
 
 // MARK: Work with MapView
 
-extension ChangeViewController: MKMapViewDelegate {
+extension AddViewController: MKMapViewDelegate {
     func updateLocation(mapView: MKMapView, address: String, animated: Bool) {
         let geocoder = CLGeocoder()
         let regionInMeters = 1000.0
@@ -241,7 +241,7 @@ extension ChangeViewController: MKMapViewDelegate {
 
 // MARK: Custom Protocol MapViewControllerDelegate
 
-extension ChangeViewController: MapViewControllerDelegate {
+extension AddViewController: MapViewControllerDelegate {
     func getAddress(_ address: String?) {
         locationOfTask.text = address
         if address != nil && address != "" {

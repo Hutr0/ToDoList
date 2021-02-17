@@ -87,7 +87,7 @@
         <!--New task-->
         <scene sceneID="rIR-mE-Ysu">
             <objects>
-                <tableViewController id="0Dh-Y5-bI2" customClass="ChangeViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="0Dh-Y5-bI2" customClass="AddViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BbS-ih-Iyy">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
