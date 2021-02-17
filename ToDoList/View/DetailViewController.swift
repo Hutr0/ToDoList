@@ -103,7 +103,7 @@ class DetailViewController: UITableViewController {
         mapVC.mapViewControllerDelegate = self
         
         if locationOfTask.text != "" {
-            mapVC.location = locationOfTask.text
+            mapVC.mapViewModel.location = locationOfTask.text
         }
     }
     

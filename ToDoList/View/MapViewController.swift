@@ -14,9 +14,8 @@ protocol MapViewControllerDelegate {
 
 class MapViewController: UIViewController {
     
-    let mapManager = MapManager()
+    let mapViewModel = MapViewModel()
     var mapViewControllerDelegate: MapViewControllerDelegate?
-    var location: String?
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pinImage: UIImageView!
@@ -29,21 +28,15 @@ class MapViewController: UIViewController {
         doneButton.layer.cornerRadius = doneButton.layer.frame.height / 2
         
         mapView.delegate = self
-        mapManager.checkLocationServices(mapView: mapView) {
-            mapManager.locationManager.delegate = self
+        mapViewModel.checkLocationServices(mapView: mapView) {
+            mapViewModel.locationManager.delegate = self
         }
         
-        if location == nil {
-            mapManager.showUserLocation(mapView: mapView)
-            addressLabel.text = ""
-        } else {
-            mapManager.showSpecificLocation(mapView: mapView, address: location!)
-            addressLabel.text = location
-        }
+        addressLabel.text = mapViewModel.getLocationAddress(mapView: mapView)
     }
     
     @IBAction func centeringUserPosition(_ sender: UIButton) {
-        mapManager.showUserLocation(mapView: mapView)
+        mapViewModel.showUserLocation(mapView: mapView)
     }
     
     @IBAction func doneButtonAction(_ sender: UIButton) {
@@ -58,38 +51,15 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        let center = mapManager.getCenterLocation(mapView: mapView)
-        let geocoder = CLGeocoder()
         
-        geocoder.reverseGeocodeLocation(center, preferredLocale: Locale(identifier: "ru_RU")) { (placemarks, error) in
-            
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            
-            guard let placemarks = placemarks else { return }
-            
-            let placemark = placemarks.first
-            let city = placemark?.locality
-            let street = placemark?.thoroughfare
-            let build = placemark?.subThoroughfare
-            
-            if city != nil && street != nil && build != nil {
-                self.addressLabel.text = "\(city!), \(street!), \(build!)"
-            } else if street != nil && build != nil {
-                self.addressLabel.text = "\(street!), \(build!)"
-            } else if street != nil {
-                self.addressLabel.text = "\(street!)"
-            } else {
-                self.addressLabel.text = ""
-            }
-        }
+        mapViewModel.regionDidChange(mapView: mapView, closure: { (address) in
+            self.addressLabel.text = address
+        })
     }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        mapManager.checkLocationAutorization(mapView: mapView)
+        mapViewModel.checkLocationAutorization(mapView: mapView)
     }
 }

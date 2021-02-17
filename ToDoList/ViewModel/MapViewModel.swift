@@ -8,11 +8,22 @@
 import UIKit
 import MapKit
 
-class MapManager {
+class MapViewModel {
     
     let locationManager = CLLocationManager()
     
+    var location: String?
     let regionInMeters = 500.0
+    
+    func getLocationAddress(mapView: MKMapView) -> String? {
+        if location == nil {
+            showUserLocation(mapView: mapView)
+            return ""
+        } else {
+            showSpecificLocation(mapView: mapView, address: location!)
+            return location
+        }
+    }
     
     func checkLocationServices(mapView: MKMapView, closure: () -> ()) {
         if CLLocationManager.locationServicesEnabled() {
@@ -83,6 +94,36 @@ class MapManager {
         let longitude = mapView.centerCoordinate.longitude
         
         return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
+    func regionDidChange(mapView: MKMapView, closure: @escaping (String) -> ()) {
+        let center = getCenterLocation(mapView: mapView)
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(center, preferredLocale: Locale(identifier: "ru_RU")) { (placemarks, error) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let placemarks = placemarks else { return }
+            
+            let placemark = placemarks.first
+            let city = placemark?.locality
+            let street = placemark?.thoroughfare
+            let build = placemark?.subThoroughfare
+            
+            if city != nil && street != nil && build != nil {
+                closure("\(city!), \(street!), \(build!)")
+            } else if street != nil && build != nil {
+                closure("\(street!), \(build!)")
+            } else if street != nil {
+                closure("\(street!)")
+            } else {
+                closure("")
+            }
+        }
     }
     
     private func showAlert(title: String, message: String) {
