@@ -7,3 +7,4 @@ It uses:
 2. CoreData
 3. Working with maps and the location of the user
 4. The MVVM pattern
+5. Work with photo
